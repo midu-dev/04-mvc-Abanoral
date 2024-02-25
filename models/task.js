@@ -40,3 +40,23 @@ let currentId = 1
    * @static
    * @param {number} id - The ID of the task to delete.
    */
+
+export class TaskModel {
+  static async getAllTasks () {
+    return tasks
+  }
+
+  static async addTask ({ description }) {
+    const newTask = { id: currentId, description }
+    currentId++
+    tasks.push(newTask)
+    return newTask
+  }
+
+  static async deleteTask ({ id }) {
+    const taskIndex = tasks.findIndex(task => task.id === id)
+    if (taskIndex === -1) return false
+    tasks.splice(taskIndex, 1)
+    return true
+  }
+}
