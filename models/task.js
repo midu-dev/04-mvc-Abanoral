@@ -54,7 +54,10 @@ export class TaskModel {
   }
 
   static async deleteTask ({ id }) {
-    const taskIndex = tasks.findIndex(task => task.id === id)
+    const taskIndex = tasks.findIndex(task => {
+      return task.id === Number(id)
+    })
+
     if (taskIndex === -1) return false
     tasks.splice(taskIndex, 1)
     return true
